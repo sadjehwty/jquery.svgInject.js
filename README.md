@@ -1,1 +1,0 @@
-# jquery.svgInject.js
