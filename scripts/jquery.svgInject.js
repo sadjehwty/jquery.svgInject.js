@@ -2,21 +2,19 @@
 (function($) {
   $.fn.extend({
     svgInject: function(){
-      var $this=$(this);
-      var array=[];
-      $this.each(function(){
-        array.push($(this).data('src'));
+      var imgUrls=[];
+      $(this).each(function(){
+        imgUrls.push($(this).attr('src'));
       });
-      array=array.filter(function(item, pos) { return array.indexOf(item) == pos;});
-      for(var i=0;i<array.length;i++){
-        var v=array[i];
+      imgUrls=imgUrls.filter(function(item, pos) { return imgUrls.indexOf(item) == pos;});
+      for(var i=0;i<imgUrls.length;i++){
+        var url=imgUrls[i];
         $.ajax({
-          url: v,
-          context: {url: v},
+          url: url,
+          context: {url: url},
           dataType: 'text',
           success:function(data) {
-            var v=this.url;
-            $this.find("[data-src='"+v+"']").each(function(){
+            $("img[src='"+this.url+"']").each(function(){
               var $img = $(this);
               var imgID = $img.attr('id');
               var imgClass = $img.attr('class');
